@@ -4,16 +4,17 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
-
 public class Checker {
 
 	public static void main(String args[]) {
+
+		final String value = System.getenv("localappdata");
 
 		int width;
 		int height;
 		BufferedImage bi;
 		File dir = new File(
-				"C:\\Users\\Superman\\AppData\\Local\\Packages\\Microsoft.Windows.ContentDeliveryManager_cw5n1h2txyewy\\LocalState\\Assets\\");
+				value + "\\Packages\\Microsoft.Windows.ContentDeliveryManager_cw5n1h2txyewy\\LocalState\\Assets\\");
 
 		String[] children = dir.list();
 
@@ -49,8 +50,9 @@ public class Checker {
 	}
 
 	public static void save(BufferedImage bi, String filename) throws IOException {
-
-		File outputfile = new File("C:\\Users\\Superman\\Desktop\\Spotlight Images\\image"+filename+".jpg");
+		
+		final String desktop = System.getProperty("user.home") + "\\Desktop";
+		File outputfile = new File(desktop+"\\Spotlight Images\\image" + filename + ".jpg");
 		ImageIO.write(bi, "jpg", outputfile);
 	}
 }
